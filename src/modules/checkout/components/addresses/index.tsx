@@ -13,7 +13,7 @@ import { Heading, Text, useToggleState } from "@medusajs/ui"
 import Divider from "@modules/common/components/divider"
 import Spinner from "@modules/common/icons/spinner"
 
-import BillingAddress from "../billing_address"
+// import BillingAddress from "../billing_address"
 import ShippingAddress from "../shipping-address"
 import { setAddresses } from "../../actions"
 import { SubmitButton } from "../submit-button"
@@ -56,7 +56,7 @@ const Addresses = ({
           level="h2"
           className="flex flex-row text-3xl-regular gap-x-2 items-baseline"
         >
-          Shipping Address
+          Địa chỉ
           {!isOpen && <CheckCircleSolid />}
         </Heading>
         {!isOpen && cart?.shipping_address && (
@@ -66,7 +66,7 @@ const Addresses = ({
               className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
               data-testid="edit-address-button"
             >
-              Edit
+              Chỉnh sửa
             </button>
           </Text>
         )}
@@ -81,8 +81,63 @@ const Addresses = ({
               onChange={toggleSameAsBilling}
               cart={cart}
             />
+            <SubmitButton className="mt-6" data-testid="submit-address-button">Chọn phương thức giao hàng</SubmitButton>
+            <ErrorMessage error={message} data-testid="address-error-message" />
+          </div>
+        </form>
+      ) : (
+        <div>
+          <div className="text-small-regular">
+            {cart && cart.shipping_address ? (
+              <div className="flex items-start gap-x-8">
+                <div className="flex items-start gap-x-1 w-full">
+                  <div className="flex flex-col w-1/2" data-testid="shipping-address-summary">
+                    <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                      Địa chỉ nhận hàng của ba mẹ
+                    </Text>
+                    <Text className="txt-medium text-ui-fg-subtle">
+                      {cart.shipping_address.address_1},{" "}
+                      {cart.shipping_address.province},{" "}
+                      {cart.shipping_address.city}
+                    </Text>
+                  </div>
+                  <div className="flex flex-col w-1/3 " data-testid="shipping-contact-summary">
+                    <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                      Thông tin liên hệ
+                    </Text>
+                    <Text className="txt-medium text-ui-fg-subtle">
+                      {cart.shipping_address.phone}
+                    </Text>
+                    <Text className="txt-medium text-ui-fg-subtle">
+                      {cart.email}
+                    </Text>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <Spinner />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      <Divider className="mt-8" />
+    </div>
+  )
+}
 
-            {!sameAsSBilling && (
+export default Addresses
+
+{/* CHƯA CẦN THIẾT
+<Text className="txt-medium text-ui-fg-subtle">
+{cart.shipping_address.country_code?.toUpperCase()}
+</Text>
+<Text className="txt-medium text-ui-fg-subtle">
+{cart.shipping_address.first_name}{" "}
+{cart.shipping_address.last_name}
+</Text> 
+{!sameAsSBilling && (
               <div>
                 <Heading
                   level="h2"
@@ -94,50 +149,7 @@ const Addresses = ({
                 <BillingAddress cart={cart} countryCode={countryCode} />
               </div>
             )}
-            <SubmitButton className="mt-6" data-testid="submit-address-button">Continue to delivery</SubmitButton>
-            <ErrorMessage error={message} data-testid="address-error-message" />
-          </div>
-        </form>
-      ) : (
-        <div>
-          <div className="text-small-regular">
-            {cart && cart.shipping_address ? (
-              <div className="flex items-start gap-x-8">
-                <div className="flex items-start gap-x-1 w-full">
-                  <div className="flex flex-col w-1/3" data-testid="shipping-address-summary">
-                    <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                      Shipping Address
-                    </Text>
-                    <Text className="txt-medium text-ui-fg-subtle">
-                      {cart.shipping_address.first_name}{" "}
-                      {cart.shipping_address.last_name}
-                    </Text>
-                    <Text className="txt-medium text-ui-fg-subtle">
-                      {cart.shipping_address.address_1}{" "}
-                      {cart.shipping_address.address_2}
-                    </Text>
-                    <Text className="txt-medium text-ui-fg-subtle">
-                      {cart.shipping_address.postal_code},{" "}
-                      {cart.shipping_address.city}
-                    </Text>
-                    <Text className="txt-medium text-ui-fg-subtle">
-                      {cart.shipping_address.country_code?.toUpperCase()}
-                    </Text>
-                  </div>
-
-                  <div className="flex flex-col w-1/3 " data-testid="shipping-contact-summary">
-                    <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                      Contact
-                    </Text>
-                    <Text className="txt-medium text-ui-fg-subtle">
-                      {cart.shipping_address.phone}
-                    </Text>
-                    <Text className="txt-medium text-ui-fg-subtle">
-                      {cart.email}
-                    </Text>
-                  </div>
-
-                  <div className="flex flex-col w-1/3" data-testid="billing-address-summary">
+<div className="flex flex-col w-1/3" data-testid="billing-address-summary">
                     <Text className="txt-medium-plus text-ui-fg-base mb-1">
                       Billing Address
                     </Text>
@@ -166,19 +178,4 @@ const Addresses = ({
                       </>
                     )}
                   </div>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <Spinner />
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-      <Divider className="mt-8" />
-    </div>
-  )
-}
-
-export default Addresses
+ */}

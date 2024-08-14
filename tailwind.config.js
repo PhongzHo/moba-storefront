@@ -34,6 +34,13 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        moba: {
+          black: "#313333",
+          green: "#B5D790",
+          blue: "#01A4A9",
+          red: "#CA2A58",
+          yellow: "#E6A813"
+        },
       },
       borderRadius: {
         none: "0px",
@@ -69,6 +76,9 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
+        moba: [
+          '"Baloo Da 2"', "sans-serif"
+        ]
       },
       keyframes: {
         ring: {

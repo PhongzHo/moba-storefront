@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react"
 import { Address, Cart, Customer } from "@medusajs/medusa"
-import Checkbox from "@modules/common/components/checkbox"
+// import Checkbox from "@modules/common/components/checkbox"
 import Input from "@modules/common/components/input"
 import AddressSelect from "../address-select"
 import CountrySelect from "../country-select"
@@ -79,14 +79,14 @@ const ShippingAddress = ({
       {customer && (addressesInRegion?.length || 0) > 0 && (
         <Container className="mb-6 flex flex-col gap-y-4 p-5">
           <p className="text-small-regular">
-            {`Hi ${customer.first_name}, do you want to use one of your saved addresses?`}
+            {`Xin chào ${customer.first_name}, Bạn có muốn lưu địa chỉ cho lần mua sắm tiếp theo?`}
           </p>
           <AddressSelect addresses={customer.shipping_addresses} cart={cart} />
         </Container>
       )}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <Input
-          label="First name"
+          label="Họ và Tên"
           name="shipping_address.first_name"
           autoComplete="given-name"
           value={formData["shipping_address.first_name"]}
@@ -95,16 +95,26 @@ const ShippingAddress = ({
           data-testid="shipping-first-name-input"
         />
         <Input
-          label="Last name"
-          name="shipping_address.last_name"
-          autoComplete="family-name"
-          value={formData["shipping_address.last_name"]}
+          label="Số Điện Thoại"
+          name="shipping_address.phone"
+          autoComplete="tel"
+          value={formData["shipping_address.phone"]}
           onChange={handleChange}
           required
-          data-testid="shipping-last-name-input"
+          data-testid="shipping-phone-input"
         />
         <Input
-          label="Address"
+          label="Email"
+          name="email"
+          type="email"
+          title="Enter a valid email address."
+          autoComplete="email"
+          value={formData.email}
+          onChange={handleChange}
+          data-testid="shipping-email-input"
+        />
+        <Input
+          label="Địa chỉ"
           name="shipping_address.address_1"
           autoComplete="address-line1"
           value={formData["shipping_address.address_1"]}
@@ -112,32 +122,27 @@ const ShippingAddress = ({
           required
           data-testid="shipping-address-input"
         />
-        <Input
-          label="Company"
-          name="shipping_address.company"
-          value={formData["shipping_address.company"]}
-          onChange={handleChange}
-          autoComplete="organization"
-          data-testid="shipping-company-input"
-        />
-        <Input
-          label="Postal code"
-          name="shipping_address.postal_code"
-          autoComplete="postal-code"
-          value={formData["shipping_address.postal_code"]}
-          onChange={handleChange}
-          required
-          data-testid="shipping-postal-code-input"
-        />
-        <Input
-          label="City"
-          name="shipping_address.city"
-          autoComplete="address-level2"
-          value={formData["shipping_address.city"]}
-          onChange={handleChange}
-          required
-          data-testid="shipping-city-input"
-        />
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            label="Tỉnh / Thành Phố"
+            name="shipping_address.city"
+            autoComplete="address-level2"
+            value={formData["shipping_address.city"]}
+            onChange={handleChange}
+            required
+            data-testid="shipping-city-input"
+          />
+          <Input
+            label="Quận / Huyện"
+            name="shipping_address.province"
+            autoComplete="address-level1"
+            value={formData["shipping_address.province"]}
+            onChange={handleChange}
+            required
+            data-testid="shipping-province-input"
+          />
+        </div>
+
         <CountrySelect
           name="shipping_address.country_code"
           autoComplete="country"
@@ -147,15 +152,14 @@ const ShippingAddress = ({
           required
           data-testid="shipping-country-select"
         />
-        <Input
-          label="State / Province"
-          name="shipping_address.province"
-          autoComplete="address-level1"
-          value={formData["shipping_address.province"]}
-          onChange={handleChange}
-          data-testid="shipping-province-input"
-        />
       </div>
+    </>
+  )
+}
+
+export default ShippingAddress
+
+{/* DON'T NEED NOW
       <div className="my-8">
         <Checkbox
           label="Billing address same as shipping address"
@@ -165,29 +169,32 @@ const ShippingAddress = ({
           data-testid="billing-address-checkbox"
         />
       </div>
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <Input
-          label="Email"
-          name="email"
-          type="email"
-          title="Enter a valid email address."
-          autoComplete="email"
-          value={formData.email}
+      NGẦM HIỂU FIRST NAME LÀ FULL NAME
+      <Input
+          label="Last name"
+          name="shipping_address.last_name"
+          autoComplete="family-name"
+          value={formData["shipping_address.last_name"]}
           onChange={handleChange}
           required
-          data-testid="shipping-email-input"
+          data-testid="shipping-last-name-input"
         />
-        <Input
-          label="Phone"
-          name="shipping_address.phone"
-          autoComplete="tel"
-          value={formData["shipping_address.phone"]}
+        ____ KHÔNG CẦN THIẾT ____
+      <Input
+          label="Company"
+          name="shipping_address.company"
+          value={formData["shipping_address.company"]}
           onChange={handleChange}
-          data-testid="shipping-phone-input"
+          autoComplete="organization"
+          data-testid="shipping-company-input"
         />
-      </div>
-    </>
-  )
-}
-
-export default ShippingAddress
+      <Input
+          label="Postal code"
+          name="shipping_address.postal_code"
+          autoComplete="postal-code"
+          value={formData["shipping_address.postal_code"]}
+          onChange={handleChange}
+          required
+          data-testid="shipping-postal-code-input"
+        />
+       */}
