@@ -45,6 +45,7 @@ const FilterRadioGroup = ({
               value={i.value}
             />
             <Label
+              // @ts-ignore
               placeholder={i.label}
               htmlFor={i.value}
               className={clx(

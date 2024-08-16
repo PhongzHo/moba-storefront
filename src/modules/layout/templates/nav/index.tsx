@@ -16,7 +16,7 @@ export default async function Nav() {
 
   return (
     <>
-      <div className="sticky top-0 inset-x-0 z-50">
+      <div className="sticky top-0 inset-x-0">
         <header className="relative h-16 mx-auto duration-200 bg-moba-green">
           <nav className="content-container pt-1">
             {/* logo */}
@@ -34,7 +34,7 @@ export default async function Nav() {
       </div>
       <MiniNav />
       {/* Thẻ div trên đang làm */}
-      <div className="sticky top-0 inset-x-0 group">
+      <div className="sticky top-0 inset-x-0 group z-50">
         <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
           <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
             <div className="flex-1 basis-0 h-full flex items-center">
