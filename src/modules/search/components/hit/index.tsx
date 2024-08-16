@@ -7,6 +7,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 export type ProductHit = {
   id: string
   title: string
+  subtitle: string
   handle: string
   description: string | null
   thumbnail: string | null
@@ -41,6 +42,12 @@ const Hit = ({ hit }: HitProps) => {
               data-testid="search-result-title"
             >
               {hit.title}
+            </Text>
+            <Text
+              className="text-ui-fg-subtle"
+              data-testid="search-result-title"
+            >
+              {hit.subtitle}
             </Text>
           </div>
         </div>
