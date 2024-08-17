@@ -9,17 +9,24 @@ async function CategoriesDropdown() {
 
     return (
         <>
-            <div className="relative inline-block text-left group">
+            <div className="group relative inline-block text-left">
                 {/* Nút Menu */}
-                <Button variant="transparent" className="rounded-full" size="large">
+                <Button
+                    variant="transparent"
+                    className="rounded-full"
+                    size="large"
+                >
                     <BarsThree />
                     Danh Mục
                 </Button>
                 {/* Menu Dropdown */}
-                <div className="absolute right-0 w-48 mt-2 origin-top-right bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-lg border border-gray-200 bg-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
                     {product_categories && (
                         <div className="flex flex-col">
-                            <ul className="grid grid-cols-1" data-testid="footer-categories">
+                            <ul
+                                className="grid grid-cols-1"
+                                data-testid="footer-categories"
+                            >
                                 {product_categories?.slice(0, 6).map((c) => {
                                     if (c.parent_category) {
                                         return
@@ -34,12 +41,12 @@ async function CategoriesDropdown() {
 
                                     return (
                                         <li
-                                            className="flex flex-col text-ui-fg-subtle txt-small"
+                                            className="txt-small flex flex-col text-ui-fg-subtle"
                                             key={c.id}
                                         >
                                             <LocalizedClientLink
                                                 className={clx(
-                                                    "hover:bg-moba-green rounded-lg p-4 m-1",
+                                                    "m-1 rounded-lg p-4 hover:bg-moba-green",
                                                     children && "txt-small-plus"
                                                 )}
                                                 href={`/categories/${c.handle}`}
@@ -50,17 +57,25 @@ async function CategoriesDropdown() {
                                             {children && (
                                                 <ul className="grid grid-cols-1">
                                                     {children &&
-                                                        children.map((child) => (
-                                                            <li key={child.id}>
-                                                                <LocalizedClientLink
-                                                                    className="hover:text-ui-fg-base"
-                                                                    href={`/categories/${child.handle}`}
-                                                                    data-testid="category-link"
+                                                        children.map(
+                                                            (child) => (
+                                                                <li
+                                                                    key={
+                                                                        child.id
+                                                                    }
                                                                 >
-                                                                    {child.name}
-                                                                </LocalizedClientLink>
-                                                            </li>
-                                                        ))}
+                                                                    <LocalizedClientLink
+                                                                        className="hover:text-ui-fg-base"
+                                                                        href={`/categories/${child.handle}`}
+                                                                        data-testid="category-link"
+                                                                    >
+                                                                        {
+                                                                            child.name
+                                                                        }
+                                                                    </LocalizedClientLink>
+                                                                </li>
+                                                            )
+                                                        )}
                                                 </ul>
                                             )}
                                         </li>

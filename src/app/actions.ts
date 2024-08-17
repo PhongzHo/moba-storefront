@@ -12,29 +12,29 @@ import { getRegion, updateCart } from "@lib/data"
  * @param countryCode
  */
 export async function updateRegion(countryCode: string, currentPath: string) {
-  const cartId = cookies().get("_medusa_cart_id")?.value
-  const region = await getRegion(countryCode)
+    const cartId = cookies().get("_medusa_cart_id")?.value
+    const region = await getRegion(countryCode)
 
-  if (!region) {
-    return null
-  }
-
-  try {
-    if (cartId) {
-      await updateCart(cartId, { region_id: region.id })
-      revalidateTag("cart")
+    if (!region) {
+        return null
     }
 
-    revalidateTag("regions")
-    revalidateTag("products")
-  } catch (e) {
-    return "Error updating region"
-  }
+    try {
+        if (cartId) {
+            await updateCart(cartId, { region_id: region.id })
+            revalidateTag("cart")
+        }
 
-  redirect(`/${countryCode}${currentPath}`)
+        revalidateTag("regions")
+        revalidateTag("products")
+    } catch (e) {
+        return "Error updating region"
+    }
+
+    redirect(`/${countryCode}${currentPath}`)
 }
 
 export async function resetOnboardingState(orderId: string) {
-  cookies().set("_medusa_onboarding", "false", { maxAge: -1 })
-  redirect(`http://localhost:7001/a/orders/${orderId}`)
+    cookies().set("_medusa_onboarding", "false", { maxAge: -1 })
+    redirect(`http://localhost:7001/a/orders/${orderId}`)
 }

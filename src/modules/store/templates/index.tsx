@@ -7,33 +7,36 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import PaginatedProducts from "./paginated-products"
 
 const StoreTemplate = ({
-  sortBy,
-  page,
-  countryCode,
+    sortBy,
+    page,
+    countryCode,
 }: {
-  sortBy?: SortOptions
-  page?: string
-  countryCode: string
+    sortBy?: SortOptions
+    page?: string
+    countryCode: string
 }) => {
-  const pageNumber = page ? parseInt(page) : 1
+    const pageNumber = page ? parseInt(page) : 1
 
-  return (
-    <div className="flex flex-col small:flex-row small:items-start py-6 content-container" data-testid="category-container">
-      <RefinementList sortBy={sortBy || "created_at"} />
-      <div className="w-full">
-        <div className="mb-8 text-2xl-semi">
-          <h1 data-testid="store-page-title">All products</h1>
+    return (
+        <div
+            className="content-container flex flex-col py-6 small:flex-row small:items-start"
+            data-testid="category-container"
+        >
+            <RefinementList sortBy={sortBy || "created_at"} />
+            <div className="w-full">
+                <div className="text-2xl-semi mb-8">
+                    <h1 data-testid="store-page-title">All products</h1>
+                </div>
+                <Suspense fallback={<SkeletonProductGrid />}>
+                    <PaginatedProducts
+                        sortBy={sortBy || "created_at"}
+                        page={pageNumber}
+                        countryCode={countryCode}
+                    />
+                </Suspense>
+            </div>
         </div>
-        <Suspense fallback={<SkeletonProductGrid />}>
-          <PaginatedProducts
-            sortBy={sortBy || "created_at"}
-            page={pageNumber}
-            countryCode={countryCode}
-          />
-        </Suspense>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default StoreTemplate

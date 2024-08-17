@@ -12,118 +12,120 @@ import { ShoppingBag } from "@medusajs/icons"
 import CategoriesDropdown from "./categories-dropdown"
 
 export default async function Nav() {
-  const regions = await listRegions().then((regions) => regions)
+    const regions = await listRegions().then((regions) => regions)
 
-  return (
-    <>
-      <div className="top-0 inset-x-0 z-[50] sticky ">
-        <header className="relative items-center h-16 mx-auto border-b duration-200 bg-moba-green/50 backdrop-blur-sm border-ui-border-base">
-          <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex h-full text-small-regular pt-1 z-[80]">
-            {/* logo */}
-            <div className="h-full flex">
-              <LocalizedClientLink href="/">
-                <Image src={logoMOBA} width={160} height={150} alt="logo MOBA'S cửa hàng mẹ và bé" />
-              </LocalizedClientLink>
-            </div>
-            <div className="gap-10 flex">
-              {/* categories */}
-              <div className="flex items-center gap-2 pl-6 font-bold ">
-                {/* <BarsThree />
+    return (
+        <>
+            <div className="sticky inset-x-0 top-0 z-[50]">
+                <header className="relative mx-auto h-16 items-center border-b border-ui-border-base bg-moba-green/50 backdrop-blur-sm duration-200">
+                    <nav className="content-container text-small-regular txt-xsmall-plus z-[80] flex h-full pt-1 text-ui-fg-subtle">
+                        {/* logo */}
+                        <div className="flex h-full">
+                            <LocalizedClientLink href="/">
+                                <Image
+                                    src={logoMOBA}
+                                    width={160}
+                                    height={150}
+                                    alt="logo MOBA'S cửa hàng mẹ và bé"
+                                />
+                            </LocalizedClientLink>
+                        </div>
+                        <div className="flex gap-10">
+                            {/* categories */}
+                            <div className="flex items-center gap-2 pl-6 font-bold">
+                                {/* <BarsThree />
                 Danh Mục */}
-                <CategoriesDropdown />
-              </div>
+                                <CategoriesDropdown />
+                            </div>
 
-              {/* search bar */}
-              <div className="flex h-full top-0 pt-2">
-                <SearchNav />
-              </div>
+                            {/* search bar */}
+                            <div className="top-0 flex h-full pt-2">
+                                <SearchNav />
+                            </div>
+                        </div>
+                        {/* sign in */}
+                        {/* Wish list */}
+
+                        {/* Cart icon */}
+                        <div className="flex h-full flex-1 basis-0 items-center justify-end gap-x-2">
+                            <div className="flex flex-col items-center">
+                                <ShoppingBag />
+                                <Suspense
+                                    fallback={
+                                        <LocalizedClientLink
+                                            className="flex gap-2 hover:text-ui-fg-base"
+                                            href="/cart"
+                                            data-testid="nav-cart-link"
+                                        >
+                                            Cart (0)
+                                        </LocalizedClientLink>
+                                    }
+                                >
+                                    <CartButton />
+                                </Suspense>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
             </div>
-            {/* sign in */}
+            {/* Thẻ div trên đang làm */}
+            <div className="group sticky inset-x-0 top-0">
+                <header className="relative mx-auto h-16 border-b border-ui-border-base bg-white duration-200">
+                    <nav className="content-container text-small-regular txt-xsmall-plus flex h-full w-full items-center justify-between text-ui-fg-subtle">
+                        <div className="flex h-full flex-1 basis-0 items-center">
+                            <div className="h-full">
+                                <SideMenu regions={regions} />
+                            </div>
+                        </div>
 
-            {/* Wish list */}
+                        <div className="flex h-full items-center">
+                            <LocalizedClientLink
+                                href="/"
+                                className="txt-compact-xlarge-plus uppercase hover:text-ui-fg-base"
+                                data-testid="nav-store-link"
+                            >
+                                Medusa Store
+                            </LocalizedClientLink>
+                        </div>
 
-            {/* Cart icon */}
-            <div className="flex items-center gap-x-2 h-full flex-1 basis-0 justify-end">
-              <div className="flex flex-col items-center">
-                <ShoppingBag />
-                <Suspense
-                  fallback={
-                    <LocalizedClientLink
-                      className="hover:text-ui-fg-base flex gap-2"
-                      href="/cart"
-                      data-testid="nav-cart-link"
-                    >
-                      Cart (0)
-                    </LocalizedClientLink>
-                  }
-                >
-                  <CartButton />
-                </Suspense>
-              </div>
+                        <div className="flex h-full flex-1 basis-0 items-center justify-end gap-x-6">
+                            <div className="hidden h-full items-center gap-x-6 small:flex">
+                                {process.env.FEATURE_SEARCH_ENABLED && (
+                                    <LocalizedClientLink
+                                        className="hover:text-ui-fg-base"
+                                        href="/search"
+                                        scroll={false}
+                                        data-testid="nav-search-link"
+                                    >
+                                        Search
+                                    </LocalizedClientLink>
+                                )}
+                                <LocalizedClientLink
+                                    className="hover:text-ui-fg-base"
+                                    href="/account"
+                                    data-testid="nav-account-link"
+                                >
+                                    Account
+                                </LocalizedClientLink>
+                            </div>
+                            <Suspense
+                                fallback={
+                                    <LocalizedClientLink
+                                        className="flex gap-2 hover:text-ui-fg-base"
+                                        href="/cart"
+                                        data-testid="nav-cart-link"
+                                    >
+                                        Cart (0)
+                                    </LocalizedClientLink>
+                                }
+                            >
+                                <CartButton />
+                                <ShoppingBag />
+                            </Suspense>
+                        </div>
+                    </nav>
+                </header>
             </div>
-
-
-          </nav>
-        </header>
-      </div>
-      {/* Thẻ div trên đang làm */}
-      <div className="sticky top-0 inset-x-0 group">
-        <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-          <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
-            <div className="flex-1 basis-0 h-full flex items-center">
-              <div className="h-full">
-                <SideMenu regions={regions} />
-              </div>
-            </div>
-
-            <div className="flex items-center h-full">
-              <LocalizedClientLink
-                href="/"
-                className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
-                data-testid="nav-store-link"
-              >
-                Medusa Store
-              </LocalizedClientLink>
-            </div>
-
-            <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-              <div className="hidden small:flex items-center gap-x-6 h-full">
-                {process.env.FEATURE_SEARCH_ENABLED && (
-                  <LocalizedClientLink
-                    className="hover:text-ui-fg-base"
-                    href="/search"
-                    scroll={false}
-                    data-testid="nav-search-link"
-                  >
-                    Search
-                  </LocalizedClientLink>
-                )}
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/account"
-                  data-testid="nav-account-link"
-                >
-                  Account
-                </LocalizedClientLink>
-              </div>
-              <Suspense
-                fallback={
-                  <LocalizedClientLink
-                    className="hover:text-ui-fg-base flex gap-2"
-                    href="/cart"
-                    data-testid="nav-cart-link"
-                  >
-                    Cart (0)
-                  </LocalizedClientLink>
-                }
-              >
-                <CartButton />
-                <ShoppingBag />
-              </Suspense>
-            </div>
-          </nav>
-        </header>
-      </div>
-    </>
-  )
+        </>
+    )
 }
