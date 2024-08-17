@@ -1,7 +1,7 @@
+
 import logoMOBA from "../../../../../public/logo-moba.png"
 import Image from "next/image"
-import MiniNav from "./mini-nav"
-import SearchBox from "@modules/search/components/search-box"
+import SearchNav from "./search-nav"
 
 import { Suspense } from "react"
 
@@ -9,32 +9,39 @@ import { listRegions } from "@lib/data"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
-
+import { ShoppingBag } from "@medusajs/icons"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
 
   return (
     <>
-      <div className="sticky top-0 inset-x-0">
-        <header className="relative h-16 mx-auto duration-200 bg-moba-green">
-          <nav className="content-container pt-1">
+      <div className="sticky top-0 inset-x-0 z-[50]">
+        <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
+          <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular pt-1 z-[80]">
             {/* logo */}
-            <LocalizedClientLink href="/">
-              <Image src={logoMOBA} width={150} height={150} alt="logo MOBA'S cửa hàng mẹ và bé" />
-            </LocalizedClientLink>
+            <div className="flex-1 basis-0 h-full flex items-center">
+              <LocalizedClientLink href="/">
+                <Image src={logoMOBA} width={150} height={150} alt="logo MOBA'S cửa hàng mẹ và bé" />
+              </LocalizedClientLink>
+            </div>
             {/* search bar */}
+            <div className="">
+              <SearchNav />
+            </div>
             {/* sign in */}
 
             {/* Wish list */}
 
             {/* Cart icon */}
+            <div>
+              <ShoppingBag />
+            </div>
           </nav>
         </header>
       </div>
-      <MiniNav />
       {/* Thẻ div trên đang làm */}
-      <div className="sticky top-0 inset-x-0 group z-50">
+      <div className="sticky top-0 inset-x-0 group">
         <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
           <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
             <div className="flex-1 basis-0 h-full flex items-center">
@@ -85,6 +92,7 @@ export default async function Nav() {
                 }
               >
                 <CartButton />
+                <ShoppingBag />
               </Suspense>
             </div>
           </nav>
