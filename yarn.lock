@@ -702,9 +702,9 @@
     retry-axios "^2.6.0"
     uuid "^9.0.0"
 
-"@medusajs/medusa@^1.18.0":
+"@medusajs/medusa@^1.20.9":
   version "1.20.9"
-  resolved "https://registry.npmjs.org/@medusajs/medusa/-/medusa-1.20.9.tgz"
+  resolved "https://registry.yarnpkg.com/@medusajs/medusa/-/medusa-1.20.9.tgz#be34928fcff08823d0051497844e628fcec69f94"
   integrity sha512-2rE66QhuWsWIp+NAOFUmeiRoP5smG8a+FV29piDz3FYQ5Gvy56d0RaZY/UdvK/oAU4/EQO4P2E7vvYcjQajYBA==
   dependencies:
     "@medusajs/core-flows" "^0.0.10"
@@ -1935,6 +1935,19 @@
   integrity sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==
   dependencies:
     mini-svg-data-uri "^1.2.3"
+
+"@tanstack/query-core@4.22.4":
+  version "4.22.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.22.4.tgz#aca622d2f8800a147ece5520d956a076ab92f0ea"
+  integrity sha512-t79CMwlbBnj+yL82tEcmRN93bL4U3pae2ota4t5NN2z3cIeWw74pzdWrKRwOfTvLcd+b30tC+ciDlfYOKFPGUw==
+
+"@tanstack/react-query@4.22":
+  version "4.22.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.22.4.tgz#851581c645f1c9cfcd394448fedd980a39bbc3fe"
+  integrity sha512-e5j5Z88XUQGeEPMyz5XF1V0mMf6Da+6URXiTpZfUb9nuHs2nlNoA+EoIvnhccE5b9YT6Yg7kARhn2L7u94M/4A==
+  dependencies:
+    "@tanstack/query-core" "4.22.4"
+    use-sync-external-store "^1.2.0"
 
 "@tanstack/react-virtual@^3.0.0-beta.60":
   version "3.9.0"
@@ -4264,6 +4277,13 @@ fraction.js@^4.3.7:
   resolved "https://registry.npmjs.org/fraction.js/-/fraction.js-4.3.7.tgz"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
+framer-motion@^11.3.28:
+  version "11.3.28"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-11.3.28.tgz#dbc5d51d9525a67b8030ba645323458364a94729"
+  integrity sha512-dqhoawipEAjqdv32zbv72sOMJZjol7dROWn7t/FOq23WXJ40O4OUybgnO2ldnuS+3YquSn8xO/KKRavZ+TBVOQ==
+  dependencies:
+    tslib "^2.4.0"
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
@@ -5490,9 +5510,9 @@ medusa-core-utils@^1.2.3:
   dependencies:
     awilix "^8.0.0"
 
-medusa-react@^9.0.0:
+medusa-react@^9.0.18:
   version "9.0.18"
-  resolved "https://registry.npmjs.org/medusa-react/-/medusa-react-9.0.18.tgz"
+  resolved "https://registry.yarnpkg.com/medusa-react/-/medusa-react-9.0.18.tgz#02b826f5b2720ecfd0334fdd9a49f341970f8ab9"
   integrity sha512-3xSw3MuH7OEX6Tz21Tthev2+1Mk/S1nI6qsqgRqUl4prZTcRFgHXq421hPeqd1RoX2h8SO2Ap1/qObc2da3tCg==
   dependencies:
     "@medusajs/medusa-js" "*"
@@ -7714,7 +7734,7 @@ use-sidecar@^1.1.2:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
 
-use-sync-external-store@^1.0.0:
+use-sync-external-store@^1.0.0, use-sync-external-store@^1.2.0:
   version "1.2.2"
   resolved "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.2.2.tgz"
   integrity sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==

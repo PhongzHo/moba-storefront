@@ -8,7 +8,8 @@ import { listRegions } from "@lib/data"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
-import { ShoppingBag, BarsThree } from "@medusajs/icons"
+import { ShoppingBag } from "@medusajs/icons"
+import CategoriesDropdown from "./categories-dropdown"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
@@ -26,10 +27,12 @@ export default async function Nav() {
             </div>
             <div className="gap-10 flex">
               {/* categories */}
-              <div className="flex items-center gap-2">
-                <BarsThree />
-                Danh Mục
+              <div className="flex items-center gap-2 pl-6 font-bold ">
+                {/* <BarsThree />
+                Danh Mục */}
+                <CategoriesDropdown />
               </div>
+
               {/* search bar */}
               <div className="flex h-full top-0 pt-2">
                 <SearchNav />

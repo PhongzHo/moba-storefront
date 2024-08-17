@@ -30,7 +30,7 @@ const Hits = ({
         {
           "max-h-full opacity-100": !!query,
           "max-h-0 opacity-0": !query && !hits.length,
-          "opacity-0": !query,
+          "pointer-events-none select-none opacity-0": !query,
         }
       )}
     >
