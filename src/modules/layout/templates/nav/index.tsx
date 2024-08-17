@@ -1,4 +1,3 @@
-
 import logoMOBA from "../../../../../public/logo-moba.png"
 import Image from "next/image"
 import SearchNav from "./search-nav"
@@ -9,34 +8,58 @@ import { listRegions } from "@lib/data"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
-import { ShoppingBag } from "@medusajs/icons"
+import { ShoppingBag, BarsThree } from "@medusajs/icons"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
 
   return (
     <>
-      <div className="sticky top-0 inset-x-0 z-[50]">
-        <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-          <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular pt-1 z-[80]">
+      <div className="top-0 inset-x-0 z-[50] sticky ">
+        <header className="relative items-center h-16 mx-auto border-b duration-200 bg-moba-green/50 backdrop-blur-sm border-ui-border-base">
+          <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex h-full text-small-regular pt-1 z-[80]">
             {/* logo */}
-            <div className="flex-1 basis-0 h-full flex items-center">
+            <div className="h-full flex">
               <LocalizedClientLink href="/">
-                <Image src={logoMOBA} width={150} height={150} alt="logo MOBA'S cửa hàng mẹ và bé" />
+                <Image src={logoMOBA} width={160} height={150} alt="logo MOBA'S cửa hàng mẹ và bé" />
               </LocalizedClientLink>
             </div>
-            {/* search bar */}
-            <div className="">
-              <SearchNav />
+            <div className="gap-10 flex">
+              {/* categories */}
+              <div className="flex items-center gap-2">
+                <BarsThree />
+                Danh Mục
+              </div>
+              {/* search bar */}
+              <div className="flex h-full top-0 pt-2">
+                <SearchNav />
+              </div>
             </div>
             {/* sign in */}
 
             {/* Wish list */}
 
             {/* Cart icon */}
-            <div>
-              <ShoppingBag />
+            <div className="flex items-center gap-x-2 h-full flex-1 basis-0 justify-end">
+              <div className="flex flex-col items-center">
+                <ShoppingBag />
+                <Suspense
+                  fallback={
+                    <LocalizedClientLink
+                      className="hover:text-ui-fg-base flex gap-2"
+                      href="/cart"
+                      data-testid="nav-cart-link"
+                    >
+                      Cart (0)
+                    </LocalizedClientLink>
+                  }
+                >
+                  <CartButton />
+                </Suspense>
+              </div>
             </div>
+
+
           </nav>
         </header>
       </div>
