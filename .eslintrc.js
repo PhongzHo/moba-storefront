@@ -1,3 +1,4 @@
 module.exports = {
-  extends: ["next/core-web-vitals","next/babel"]
+  root: true,
+  extends: ["next/core-web-vitals", "next/babel", "plugin:tailwindcss/recommended"]
 };

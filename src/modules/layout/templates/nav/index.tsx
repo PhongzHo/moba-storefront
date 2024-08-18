@@ -118,7 +118,6 @@ export default async function Nav() {
                 }
               >
                 <CartButton />
-                <ShoppingBag />
               </Suspense>
             </div>
           </nav>
