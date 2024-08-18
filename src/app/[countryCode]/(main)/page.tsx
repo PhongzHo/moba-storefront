@@ -8,76 +8,72 @@ import { ProductCollectionWithPreviews } from "types/global"
 import { cache } from "react"
 
 export const metadata: Metadata = {
-    title: "Medusa Next.js Starter Template",
-    description:
-        "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+  title: "Medusa Next.js Starter Template",
+  description:
+    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
 }
 
 const getCollectionsWithProducts = cache(
-    async (
-        countryCode: string
-    ): Promise<ProductCollectionWithPreviews[] | null> => {
-        const { collections } = await getCollectionsList(0, 3)
+  async (
+    countryCode: string
+  ): Promise<ProductCollectionWithPreviews[] | null> => {
+    const { collections } = await getCollectionsList(0, 3)
 
-        if (!collections) {
-            return null
+    if (!collections) {
+      return null
+    }
+
+    const collectionIds = collections.map((collection) => collection.id)
+
+    await Promise.all(
+      collectionIds.map((id) =>
+        getProductsList({
+          queryParams: { collection_id: [id] },
+          countryCode,
+        })
+      )
+    ).then((responses) =>
+      responses.forEach(({ response, queryParams }) => {
+        let collection
+
+        if (collections) {
+          collection = collections.find(
+            (collection) => collection.id === queryParams?.collection_id?.[0]
+          )
         }
 
-        const collectionIds = collections.map((collection) => collection.id)
+        if (!collection) {
+          return
+        }
 
-        await Promise.all(
-            collectionIds.map((id) =>
-                getProductsList({
-                    queryParams: { collection_id: [id] },
-                    countryCode,
-                })
-            )
-        ).then((responses) =>
-            responses.forEach(({ response, queryParams }) => {
-                let collection
+        collection.products = response.products as unknown as Product[]
+      })
+    )
 
-                if (collections) {
-                    collection = collections.find(
-                        (collection) =>
-                            collection.id === queryParams?.collection_id?.[0]
-                    )
-                }
-
-                if (!collection) {
-                    return
-                }
-
-                collection.products = response.products as unknown as Product[]
-            })
-        )
-
-        return collections as unknown as ProductCollectionWithPreviews[]
-    }
+    return collections as unknown as ProductCollectionWithPreviews[]
+  }
 )
 
 export default async function Home({
-    params: { countryCode },
+  params: { countryCode },
 }: {
-    params: { countryCode: string }
+  params: { countryCode: string }
 }) {
-    const collections = await getCollectionsWithProducts(countryCode)
-    const region = await getRegion(countryCode)
+  const collections = await getCollectionsWithProducts(countryCode)
+  const region = await getRegion(countryCode)
 
-    if (!collections || !region) {
-        return null
-    }
+  if (!collections || !region) {
+    return null
+  }
 
-    return (
-        <>
-            <Hero />
-            <div className="py-12">
-                <ul className="flex flex-col gap-x-6">
-                    <FeaturedProducts
-                        collections={collections}
-                        region={region}
-                    />
-                </ul>
-            </div>
-        </>
-    )
+  return (
+    <>
+      <Hero />
+      <div className="py-12">
+        <ul className="flex flex-col gap-x-6">
+          <FeaturedProducts collections={collections} region={region} />
+        </ul>
+      </div>
+    </>
+  )
 }

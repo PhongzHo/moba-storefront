@@ -9,24 +9,24 @@ import React from "react"
  * without having to explicitly pass it as a prop.
  */
 const LocalizedClientLink = ({
-    children,
-    href,
-    ...props
+  children,
+  href,
+  ...props
 }: {
-    children?: React.ReactNode
-    href: string
-    className?: string
-    onClick?: () => void
-    passHref?: true
-    [x: string]: any
+  children?: React.ReactNode
+  href: string
+  className?: string
+  onClick?: () => void
+  passHref?: true
+  [x: string]: any
 }) => {
-    const { countryCode } = useParams()
+  const { countryCode } = useParams()
 
-    return (
-        <Link href={`/${countryCode}${href}`} {...props}>
-            {children}
-        </Link>
-    )
+  return (
+    <Link href={`/${countryCode}${href}`} {...props}>
+      {children}
+    </Link>
+  )
 }
 
 export default LocalizedClientLink
