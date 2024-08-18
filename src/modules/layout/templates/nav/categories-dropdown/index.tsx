@@ -7,13 +7,15 @@ export default async function CategoriesDropdown() {
     const Category = product_categories.map((ca) => {
         return {
             name: ca.name,
-            handle: ca.handle
+            handle: ca.handle,
+            id: ca.id
         }
     }) 
 
     const items = Category.map((c) => ({
         name: c.name,
-        handle: c.handle
+        handle: c.handle,
+        id: c.id
     }))
 
     return (
