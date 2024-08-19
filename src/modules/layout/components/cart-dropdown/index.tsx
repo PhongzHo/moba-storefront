@@ -82,7 +82,7 @@ const CartDropdown = ({ cart: cartState }: {
             className="hover:text-ui-fg-base flex gap-1"
             href="/cart"
             data-testid="nav-cart-link"
-          > <ShoppingBag /> {`(${totalItems})`}</LocalizedClientLink>
+          ><ShoppingBag />{`(${totalItems})`}</LocalizedClientLink>
         </Popover.Button>
         <Transition
           show={cartDropdownOpen}

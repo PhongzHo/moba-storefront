@@ -16,7 +16,7 @@ export default async function Nav() {
   // const regions = await listRegions().then((regions) => regions)
 
   return (
-    <div className="top-0 inset-x-0 z-[50] sticky my-1">
+    <div className="top-0 inset-x-0 z-[50] sticky mt-1">
       <header className="border-b duration-200 bg-white backdrop-blur-sm border-ui-border-base">
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle h-fit text-small-regular pt-1">
           <div className="flex justify-between items-center">
@@ -44,7 +44,7 @@ export default async function Nav() {
               </Suspense>
             </div>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 py-2">
             <SearchNav />
           </div>
         </nav>

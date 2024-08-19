@@ -11,7 +11,9 @@ interface DropdownMenuProps {
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({ items }) => {
     const [isOpen, setOpen] = useState(false)
-
+    const toggle = () => {
+        setOpen(!isOpen)
+    } 
     const showMenu = {
         enter: {
             opacity: 1,
@@ -33,8 +35,9 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ items }) => {
     return (
         <>
             <motion.div
-                onHoverStart={() => { setOpen(true) }}
-                onHoverEnd={() => { setOpen(false) }}
+                onClick={() => toggle()}
+                onHoverStart={() => {setOpen(true)}}
+                onHoverEnd={() => {setOpen(false)}}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{

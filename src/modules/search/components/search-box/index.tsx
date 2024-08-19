@@ -1,4 +1,4 @@
-import { XMarkMini } from "@medusajs/icons"
+import { XMarkMini, MagnifyingGlassMini } from "@medusajs/icons"
 import { FormEvent } from "react"
 import { useRouter } from "next/navigation"
 
@@ -21,6 +21,7 @@ const ControlledSearchBox = ({
 
     if (onSubmit) {
       onSubmit(event)
+      onReset(event)
     }
 
     if (inputRef.current) {
@@ -54,16 +55,15 @@ const ControlledSearchBox = ({
             type="search"
             value={value}
             onChange={onChange}
-            className="txt-compact-large h-6 placeholder:text-ui-fg-on-color placeholder:transition-colors focus:outline-none flex-1 bg-transparent "
+            className="txt-compact-small h-6 placeholder:text-ui-fg-on-color placeholder:transition-colors focus:outline-none flex-1 bg-transparent "
           />
           {value && (
             <button
-              onClick={handleReset}
+              onClick={handleSubmit}
               type="button"
-              className="items-center justify-center text-ui-fg-on-color focus:outline-none gap-x-2 px-2 txt-compact-large flex"
+              className="items-center bg-slate-200 hover:transition-opacity duration-300 p-1 hover:bg-moba-green rounded-full justify-center text-ui-fg-on-color focus:outline-none gap-x-2 px-2 txt-compact-large flex"
             >
-              <XMarkMini />
-              Xóa
+              <MagnifyingGlassMini color="#131313" />
             </button>
           )}
         </div>
@@ -80,7 +80,7 @@ const SearchBox = () => {
       {(props) => {
         return (
           <>
-            <ControlledSearchBox {...props} />
+            <ControlledSearchBox {...props} className="ml-3"/>
           </>
         )
       }}
