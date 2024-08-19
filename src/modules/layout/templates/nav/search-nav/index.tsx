@@ -18,14 +18,14 @@ export default function SearchNav() {
                     searchClient={searchClient}
                 >
                     <div
-                        className="absolute flex flex-col w-full sm:w-fit"
+                        className="w-full justify-center"
                         data-testid="search-modal-container"
                     >
-                        <div className="w-3/4 flex items-center gap-x-2 p-2 bg-[rgba(3,7,18,0.5)] text-ui-fg-on-color backdrop-blur-2xl rounded-full">
+                        <div className="flex gap-x-2 items-center p-2 bg-[rgba(3,7,18,0.5)] text-ui-fg-on-color backdrop-blur-2xl rounded-full">
                             <MagnifyingGlassMini />
                             <SearchBox />
                         </div>
-                        <div className="flex-1 mt-3">
+                        <div className='mt-2'>
                             <Hits hitComponent={Hit} />
                         </div>
                     </div>

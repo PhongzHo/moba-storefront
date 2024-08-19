@@ -20,8 +20,7 @@ export default async function CategoriesDropdown() {
 
     return (
         <>
-            <div className="relative inline-block text-left group">
-                {/* Nút Menu */}
+            <div className="text-left">
                 <CategoriesButton items={items} />
             </div>
         </>

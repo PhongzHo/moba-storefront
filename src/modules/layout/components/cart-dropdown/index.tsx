@@ -13,6 +13,8 @@ import LineItemPrice from "@modules/common/components/line-item-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "@modules/products/components/thumbnail"
 
+import { ShoppingBag } from "@medusajs/icons"
+
 const CartDropdown = ({ cart: cartState }: {
   cart?: Omit<Cart, "beforeInsert" | "afterLoad"> | null
 }) => {
@@ -77,10 +79,10 @@ const CartDropdown = ({ cart: cartState }: {
       <Popover className="relative h-full">
         <Popover.Button className="h-full">
           <LocalizedClientLink
-            className="hover:text-ui-fg-base"
+            className="hover:text-ui-fg-base flex gap-1"
             href="/cart"
             data-testid="nav-cart-link"
-          >{`Giỏ hàng (${totalItems})`}</LocalizedClientLink>
+          > <ShoppingBag /> {`(${totalItems})`}</LocalizedClientLink>
         </Popover.Button>
         <Transition
           show={cartDropdownOpen}

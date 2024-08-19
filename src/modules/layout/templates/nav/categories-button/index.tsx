@@ -1,6 +1,5 @@
 "use client"
 import React from 'react';
-import { Button, clx } from "@medusajs/ui"
 import { BarsThree } from "@medusajs/icons"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { useState } from 'react'
@@ -45,39 +44,43 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ items }) => {
                     damping: 20,
                 }}
                 whileHover={{ backgroundColor: "#3133331f" }}
-                className='relative inline-block text-left p-2 rounded-lg'
+                className='absolute mt-1 inline-block text-left p-2 rounded-lg'
             >
                 <motion.button
                     id="dropdown-button"
-                    className="flex gap-2 items-center rounded-full text-moba-black"
+                    className="flex flex-1 relative gap-2 items-center rounded-full text-moba-black z-[100]"
                 >
                     <BarsThree />
                     <span>Danh Mục</span>
                 </motion.button>
-                <motion.ul
-                    variants={showMenu}
-                    initial="exit"
-                    animate={isOpen ? "enter" : "exit"}
-                    className="absolute bg-white mt-6 border rounded-xl p-2 justify-center left-0"
-                >
-                    {items.map((item) => (
-                        <LocalizedClientLink href={`/categories/${item.handle}`}>
-                            <motion.li
-                                whileHover={{
-                                    textDecorationLine: "underline",
-                                    color: "#CA2A58",
-                                    x: 2,
-                                }}
-                                className="cursor-pointer px-4 py-2 text-blue-primary w-48"
+                {items.map((item) => (
+                    <motion.ul
+                        key={item.id}
+                        variants={showMenu}
+                        initial="exit"
+                        animate={isOpen ? "enter" : "exit"}
+                        className="absolute left-0 bg-white mt-6 border rounded-xl p-2 justify-center"
+                    >
+                        {items.map((item) => (
+                            <LocalizedClientLink href={`/categories/${item.handle}`}
                                 key={item.id}
                             >
-                                {item.name}
-                            </motion.li>
-                        </LocalizedClientLink>
-                    ))}
-                </motion.ul>
+                                <motion.li
+                                    whileHover={{
+                                        textDecorationLine: "underline",
+                                        color: "#CA2A58",
+                                        x: 2,
+                                    }}
+                                    key={item.id}
+                                    className="cursor-pointer px-4 py-2 text-blue-primary w-48"
+                                >
+                                    {item.name}
+                                </motion.li>
+                            </LocalizedClientLink>
+                        ))}
+                    </motion.ul>
+                ))}
             </motion.div >
-
         </>
     );
 };
